@@ -1,8 +1,12 @@
 #! /bin/sh
+
+echo "xxd"
+xxd $1
+
 echo -e $1 > ~/credentials
-client_id=$(echo -e $1 | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
-clientSecret=$(echo -e $1 | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
-tenantId=$(echo -e $1 | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
+client_id=$($1 | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
+clientSecret=$($1 | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
+tenantId=$($1 | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
 
 echo "client_id $client_id"
 echo "clientSecret $clientSecret"
