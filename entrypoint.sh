@@ -11,21 +11,18 @@ echo "vm_size: $vm_size"
 
 
 
-# echo "pwd: $(pwd)"
-# echo "/github"
-# ls -alh /github
-# echo "/github/home"
-# ls -alh /github/home
-# echo "/github/workspace"
-# ls -alh /github/workspace
+echo "pwd: $(pwd)"
+echo "/github"
+ls -alh /github
+echo "/github/home"
+ls -alh /github/home
+echo "/github/workspace"
+ls -alh /github/workspace
+echo "/root"
+ls -alh /root
+echo "/root/.azure"
+ls -alh /root/.azure
 
-# mv /github/home/.azure /root/.azure
-
-# echo "/root"
-# ls -alh /root
-# echo "/root/.azure"
-# ls -alh /root/.azure
-# # mv /github/home/.azure /root/.azure
 
 
 # echo "Creating VM"
