@@ -9,10 +9,10 @@ inputs:
         description: 'Azure VM name'
         required: true
         default: 'GithubActionsVM'
-    azure-vm-name:
-        description: 'Azure VM name'
+    azure-vm-size:
+        description: 'Azure VM size'
         required: true
-        default: 'GithubActionsVM'
+        default: 'Standard_DS2_v2'
 outputs:
     stdout:
         description: 'Stdout'
@@ -22,5 +22,6 @@ runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
-        - ${{ inputs.azure-vm-name }}
         - ${{ inputs.azure-resource-group }}
+        - ${{ inputs.azure-vm-name }}
+        - ${{ inputs.azure-vm-size }}
