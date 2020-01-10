@@ -3,6 +3,10 @@
 echo "xxd"
 echo $1 | xxd
 
+
+echo $1 | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+
 echo "clientId $(echo $2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
 echo "clientSecret $(echo $3 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
 echo "tenantId $(echo $4 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
