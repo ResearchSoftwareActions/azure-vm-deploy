@@ -1,6 +1,10 @@
 name: 'Azure VM deployment'
 description: 'Deploy a VM to Azure'
 inputs:
+    azure-credentials:
+        description: 'Azure credentials'
+        required: true
+        default: 'GithubActionsRG'
     azure-resource-group:
         description: 'Azure resource group'
         required: true
@@ -22,6 +26,7 @@ runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
+        - ${{ inputs.azure-credentials }}
         - ${{ inputs.azure-resource-group }}
         - ${{ inputs.azure-vm-name }}
         - ${{ inputs.azure-vm-size }}
