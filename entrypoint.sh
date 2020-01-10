@@ -1,7 +1,16 @@
 #! /bin/sh
-# credentials=$1
+credentials=$1
 
 echo $1 > ~/credentials
+
+
+client_id=$(echo $credentials | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
+clientSecret=$(echo $credentials | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
+tenantId=$(echo $credentials | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
+
+echo "client_id $client_id"
+echo "clientSecret $clientSecret"
+echo "tenantId $tenantId"
 
 resource_group=$2
 vm_name=$3
@@ -15,19 +24,20 @@ echo "vm_size: $vm_size"
 
 
 
-echo "pwd: $(pwd)"
-echo "/github"
-ls -alh /github
-echo "/github/home"
-ls -alh /github/home
-echo "/github/workspace"
-ls -alh /github/workspace
-echo "/root"
-ls -alh /root
-echo "/root/.azure"
-ls -alh /root/.azure
+# echo "pwd: $(pwd)"
+# echo "/github"
+# ls -alh /github
+# echo "/github/home"
+# ls -alh /github/home
+# echo "/github/workspace"
+# ls -alh /github/workspace
+# echo "/root"
+# ls -alh /root
+# echo "/root/.azure"
+# ls -alh /root/.azure
 
-
+az login --service-principal -u $client_id -p $clientSecret --tenant $tenantId
+az account
 
 # echo "Creating VM"
 # az vm create --resource-group $resource_group --name $vm_name --image UbuntuLTS --size $vm_size --admin-username githubactionsadmin --generate-ssh-keys --ephemeral-os-disk true

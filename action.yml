@@ -26,7 +26,7 @@ runs:
     using: 'docker'
     image: 'Dockerfile'
     env:
-        home: /home/runner/
+        HOME: /home/runner/
     args:
         - ${{ inputs.azure-credentials }}
         - ${{ inputs.azure-resource-group }}
@@ -38,3 +38,5 @@ runs:
 # -v "/home/runner/work/_temp/_github_home":"/github/home"
 # -v "/home/runner/work/_temp/_github_workflow":"/github/workflow"
 # -v "/home/runner/work/devito/devito":"/github/workspace"
+# desired
+# /home/runner/.azure
