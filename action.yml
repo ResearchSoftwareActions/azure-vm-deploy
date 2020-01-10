@@ -5,18 +5,18 @@ inputs:
         description: 'Azure credentials'
         required: true
         default: 'GithubActionsRG'
-    azure-client-id:
-        description: 'Azure credentials'
-        required: true
-        default: 'GithubActionsRG'
-    azure-client-secret:
-        description: 'Azure credentials'
-        required: true
-        default: 'GithubActionsRG'
-    azure-tenant-id:
-        description: 'Azure credentials'
-        required: true
-        default: 'GithubActionsRG'
+    # azure-client-id:
+    #     description: 'Azure credentials'
+    #     required: true
+    #     default: 'GithubActionsRG'
+    # azure-client-secret:
+    #     description: 'Azure credentials'
+    #     required: true
+    #     default: 'GithubActionsRG'
+    # azure-tenant-id:
+    #     description: 'Azure credentials'
+    #     required: true
+    #     default: 'GithubActionsRG'
     azure-resource-group:
         description: 'Azure resource group'
         required: true
@@ -41,9 +41,9 @@ runs:
         HOME: /home/runner/
     args:
         - ${{ inputs.azure-credentials }}
-        - ${{ inputs.azure-client-id }}
-        - ${{ inputs.azure-client-secret }}
-        - ${{ inputs.azure-tenant-id }}
+        # - ${{ inputs.azure-client-id }}
+        # - ${{ inputs.azure-client-secret }}
+        # - ${{ inputs.azure-tenant-id }}
         - ${{ inputs.azure-resource-group }}
         - ${{ inputs.azure-vm-name }}
         - ${{ inputs.azure-vm-size }}
