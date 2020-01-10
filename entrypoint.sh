@@ -3,15 +3,24 @@
 echo "xxd"
 echo $1 | xxd
 
-echo "clientId $2"
-echo "clientSecret $3"
-echo "tenantId $4"
+echo "clientId $(echo $2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
+echo "clientSecret $(echo $3 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
+echo "tenantId $(echo $4 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
 
 clientId=$2
 clientSecret=$3
 tenantId=$4
 
-# client_id=$($1 | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
+clientId2=$(echo $1 | sed 's/"clientId": "\([^"]*\)"/\1/')
+clientSecret2=$(echo $1 | sed 's/"clientSecret": "\([^"]*\)"/\1/')
+tenantId2=$(echo $1 | sed 's/"tenantId": "\([^"]*\)"/\1/')
+
+echo "clientId $(echo $clientId2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
+echo "clientSecret $(echo $clientSecret2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
+echo "tenantId $(echo $tenantId2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
+
+
+
 # clientSecret=$($1 | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
 # tenantId=$($1 | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
 
@@ -46,7 +55,7 @@ tenantId=$4
 # ls -alh /root/.azure
 
 az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
-az account
+az account show
 
 # echo "Creating VM"
 # az vm create --resource-group $resource_group --name $vm_name --image UbuntuLTS --size $vm_size --admin-username githubactionsadmin --generate-ssh-keys --ephemeral-os-disk true
