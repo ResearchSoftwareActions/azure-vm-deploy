@@ -1,0 +1,26 @@
+name: 'Azure VM deployment'
+description: 'Deploy a VM to Azure'
+inputs:
+    azure-resource-group:
+        description: 'Azure resource group'
+        required: true
+        default: 'GithubActionsRG'
+    azure-vm-name:
+        description: 'Azure VM name'
+        required: true
+        default: 'GithubActionsVM'
+    azure-vm-name:
+        description: 'Azure VM name'
+        required: true
+        default: 'GithubActionsVM'
+outputs:
+    stdout:
+        description: 'Stdout'
+    stderr:
+        description: 'Stderr'
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args:
+        - ${{ inputs.azure-vm-name }}
+        - ${{ inputs.azure-resource-group }}
