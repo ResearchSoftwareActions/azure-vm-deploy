@@ -11,9 +11,9 @@ clientId=$2
 clientSecret=$3
 tenantId=$4
 
-clientId2=$(echo $1 | sed 's/"clientId": "\([^"]*\)"/\1/')
-clientSecret2=$(echo $1 | sed 's/"clientSecret": "\([^"]*\)"/\1/')
-tenantId2=$(echo $1 | sed 's/"tenantId": "\([^"]*\)"/\1/')
+clientId2=$(echo $1 | grep "clientId" | sed 's/"clientId": "\([^"]*\)"/\1/')
+clientSecret2=$(echo $1 | grep "clientSecret" | sed 's/"clientSecret": "\([^"]*\)"/\1/')
+tenantId2=$(echo $1 | grep "tenantId" | sed 's/"tenantId": "\([^"]*\)"/\1/')
 
 echo "clientId $(echo $clientId2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
 echo "clientSecret $(echo $clientSecret2 | tr 'A-Za-z' 'N-ZA-Mn-za-m')"
