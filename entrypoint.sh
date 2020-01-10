@@ -1,10 +1,14 @@
 #! /bin/sh
-credentials=$1
+# credentials=$1
+
+echo $1 > ~/credentials
+
 resource_group=$2
 vm_name=$3
 vm_size=$4
 
-echo "credentials: $credentials"
+# echo "credentials: $credentials"
+cat ~/credentials
 echo "resource_group: $resource_group"
 echo "vm_name: $vm_name"
 echo "vm_size: $vm_size"
