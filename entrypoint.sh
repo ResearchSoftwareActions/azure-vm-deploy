@@ -1,28 +1,35 @@
 #! /bin/sh
 
 echo "xxd"
-xxd $1
+echo $1 | xxd
 
-echo -e $1 > ~/credentials
-client_id=$($1 | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
-clientSecret=$($1 | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
-tenantId=$($1 | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
+echo "clientId $2"
+echo "clientSecret $3"
+echo "tenantId $4"
 
-echo "client_id $client_id"
-echo "clientSecret $clientSecret"
-echo "tenantId $tenantId"
+clientId=$2
+clientSecret=$3
+tenantId=$4
 
-cat ~/credentials
+# client_id=$($1 | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
+# clientSecret=$($1 | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
+# tenantId=$($1 | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
 
-resource_group=$2
-vm_name=$3
-vm_size=$4
+# echo "client_id $client_id"
+# echo "clientSecret $clientSecret"
+# echo "tenantId $tenantId"
 
-# echo "credentials: $credentials"
-cat ~/credentials
-echo "resource_group: $resource_group"
-echo "vm_name: $vm_name"
-echo "vm_size: $vm_size"
+# cat ~/credentials
+
+# resource_group=$2
+# vm_name=$3
+# vm_size=$4
+
+# # echo "credentials: $credentials"
+# cat ~/credentials
+# echo "resource_group: $resource_group"
+# echo "vm_name: $vm_name"
+# echo "vm_size: $vm_size"
 
 
 
@@ -38,7 +45,7 @@ echo "vm_size: $vm_size"
 # echo "/root/.azure"
 # ls -alh /root/.azure
 
-az login --service-principal -u $client_id -p $clientSecret --tenant $tenantId
+az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
 az account
 
 # echo "Creating VM"
