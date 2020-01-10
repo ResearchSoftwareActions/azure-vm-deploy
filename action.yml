@@ -21,7 +21,15 @@ outputs:
 runs:
     using: 'docker'
     image: 'Dockerfile'
+    volumes:
+        - ${{ env.HOME }}/.azure:/root/.azure
     args:
         - ${{ inputs.azure-resource-group }}
         - ${{ inputs.azure-vm-name }}
         - ${{ inputs.azure-vm-size }}
+
+# default mounts
+# -v "/var/run/docker.sock":"/var/run/docker.sock"
+# -v "/home/runner/work/_temp/_github_home":"/github/home"
+# -v "/home/runner/work/_temp/_github_workflow":"/github/workflow"
+# -v "/home/runner/work/devito/devito":"/github/workspace"
