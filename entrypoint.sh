@@ -25,8 +25,8 @@ echo "$remote_output"
 # stdout=${output_without_stderr##*stdout]\\n}
 # stderr=${remote_output##*stderr]\\n}
 
-stdout=$(cat $remote_output | sed 's/.*\[stdout\]\\n\(.*\)\\n\\n\[stderr\].*/\1/')
-stderr=$(cat $remote_output | sed 's/.*\[stderr\]\\n\(.*\).*"/\1/'
+stdout=$(echo -e $(echo $remote_output | sed 's/.*\[stdout\]\\n\(.*\)\\n\\n\[stderr\].*/\1/'))
+stderr=$(echo -e $(echo $remote_output | sed 's/.*\[stderr\]\\n\(.*\).*"/\1/'))
 
 echo "stdout: $stdout"
 echo "stderr: $stderr"
