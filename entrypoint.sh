@@ -1,16 +1,14 @@
 #! /bin/sh
-credentials=$1
-
-echo $1 > ~/credentials
-
-
-client_id=$(echo $credentials | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
-clientSecret=$(echo $credentials | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
-tenantId=$(echo $credentials | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
+echo -e $1 > ~/credentials
+client_id=$(echo -e $1 | grep "clientId" | sed 's/"clientId": "\(.*\)".*/\1/')
+clientSecret=$(echo -e $1 | grep "clientSecret" | sed 's/"clientSecret": "\(.*\)".*/\1/')
+tenantId=$(echo -e $1 | grep "tenantId" | sed 's/"tenantId": "\(.*\)".*/\1/')
 
 echo "client_id $client_id"
 echo "clientSecret $clientSecret"
 echo "tenantId $tenantId"
+
+cat ~/credentials
 
 resource_group=$2
 vm_name=$3
