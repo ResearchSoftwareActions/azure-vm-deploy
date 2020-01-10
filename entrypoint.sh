@@ -3,9 +3,14 @@ resource_group=$1
 vm_name=$2
 vm_size=$3
 
-pwd
+echo "pwd: $(pwd)"
+echo "/github"
 ls -alh /github
+echo "/github/home"
 ls -alh /github/home
+echo "/github/workspace"
+ls -alh /github/workspace
+
 
 echo "Creating VM"
 az vm create --resource-group $resource_group --name $vm_name --image UbuntuLTS --size $vm_size --admin-username githubactionsadmin --generate-ssh-keys --ephemeral-os-disk true
