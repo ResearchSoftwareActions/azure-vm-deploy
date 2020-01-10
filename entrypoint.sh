@@ -15,8 +15,7 @@ ls -alh /github/home
 echo "/github/workspace"
 ls -alh /github/workspace
 
-
-mv /github/home/.azure /root.azure
+mv /github/home/.azure /root/.azure
 
 echo "/root"
 ls -alh /root
