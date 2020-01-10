@@ -21,23 +21,15 @@ remote_output=$(az vm run-command invoke --name $vm_name --resource-group $resou
 # # remote_output=$(az vm run-command invoke --name $vm_name --resource-group $resource_group --command-id RunShellScript --query "value[0].message" --scripts @${{ env.PATH_TO_SCRIPT }} --parameters oh hello world)
 
 echo "$remote_output"
-output_without_stderr=${remote_output%%\\n\\n[stderr*}
-stdout=${output_without_stderr##*stdout]\\n}
+# output_without_stderr=${remote_output%%\\n\\n[stderr*}
+# stdout=${output_without_stderr##*stdout]\\n}
+# stderr=${remote_output##*stderr]\\n}
 
-stderr=${remote_output##*stderr]\\n}
+stdout=$(cat $remote_output | sed 's/.*\[stdout\]\\n\(.*\)\\n\\n\[stderr\].*/\1/')
+stderr=$(cat $remote_output | sed 's/.*\[stderr\]\\n\(.*\).*"/\1/'
 
 echo "stdout: $stdout"
 echo "stderr: $stderr"
 
-
-#stdout "Enable succeeded: \n[stdout]\noh hello world\n\n[stderr]\n"
-#stderr ?
-
-
-
-
-#     #       remote_output_without_stderr=${remote_output%%\\n\\n[stderr*}
-#     #       final_stdout_line=$(echo -e ${remote_output_without_stderr##*stdout]\\n} | tail -n 1)
-#     #       echo "$final_stdout_line"
-#     #       if [[ "$final_stdout_line" -ne "SUCCESS" ]]; then set -e o pipefail; fi
 echo ::set-output name=stdout::$stdout
+echo ::set-output name=stderr::$stderr
