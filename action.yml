@@ -22,6 +22,7 @@ runs:
     using: 'docker'
     image: 'Dockerfile'
     args:
+        - -v /home/runner/.azure:/root/.azure
         - ${{ inputs.azure-resource-group }}
         - ${{ inputs.azure-vm-name }}
         - ${{ inputs.azure-vm-size }}
