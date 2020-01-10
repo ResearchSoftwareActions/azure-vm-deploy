@@ -21,8 +21,6 @@ outputs:
 runs:
     using: 'docker'
     image: 'Dockerfile'
-    volumes:
-        - ${{ env.HOME }}/.azure:/root/.azure
     args:
         - ${{ inputs.azure-resource-group }}
         - ${{ inputs.azure-vm-name }}

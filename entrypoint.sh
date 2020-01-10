@@ -3,6 +3,8 @@ resource_group=$1
 vm_name=$2
 vm_size=$3
 
+echo "home: $vm_size"
+
 echo "pwd: $(pwd)"
 echo "/github"
 ls -alh /github
