@@ -3,7 +3,9 @@ resource_group=$1
 vm_name=$2
 vm_size=$3
 
-echo "home: $vm_size"
+echo "resource_group: $resource_group"
+echo "vm_name: $vm_name"
+echo "vm_size: $vm_size"
 
 echo "pwd: $(pwd)"
 echo "/github"
@@ -13,7 +15,12 @@ ls -alh /github/home
 echo "/github/workspace"
 ls -alh /github/workspace
 
-mv /github/home/.azure /root/.azure
+echo "/root"
+ls -alh /root
+echo "/root/.azure"
+ls -alh /root/.azure
+
+# mv /github/home/.azure /root/.azure
 
 
 echo "Creating VM"
