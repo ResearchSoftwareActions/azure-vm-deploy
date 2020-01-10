@@ -11,17 +11,30 @@ vm_name=$3
 vm_size=$4
 
 # Log in to Azure using the secrets
+echo "Logging in to Azure..."
 az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
-az account show
 
-echo "Creating VM"
+echo "Creating VM..."
 az vm create --resource-group $resource_group --name $vm_name --image UbuntuLTS --size $vm_size --admin-username githubactionsadmin --generate-ssh-keys --ephemeral-os-disk true
 remote_output=$(az vm run-command invoke --name $vm_name --resource-group $resource_group --command-id RunShellScript --query "value[0].message" --scripts 'echo $1 $2 $3' --parameters oh hello world)
 
 # # remote_output=$(az vm run-command invoke --name $vm_name --resource-group $resource_group --command-id RunShellScript --query "value[0].message" --scripts @${{ env.PATH_TO_SCRIPT }} --parameters oh hello world)
 
 echo "$remote_output"
-stdout=${remote_output%%\\n\\n[stderr*}
+output_without_stderr=${remote_output%%\\n\\n[stderr*}
+stdout=${output_without_stderr##*stdout]\\n}
+
+stderr=${remote_output##*stderr]\\n}
+
+echo "stdout: $stdout"
+echo "stderr: $stderr"
+
+
+#stdout "Enable succeeded: \n[stdout]\noh hello world\n\n[stderr]\n"
+#stderr ?
+
+
+
 
 #     #       remote_output_without_stderr=${remote_output%%\\n\\n[stderr*}
 #     #       final_stdout_line=$(echo -e ${remote_output_without_stderr##*stdout]\\n} | tail -n 1)
