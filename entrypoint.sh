@@ -9,6 +9,8 @@ echo "resource_group: $resource_group"
 echo "vm_name: $vm_name"
 echo "vm_size: $vm_size"
 
+
+
 # echo "pwd: $(pwd)"
 # echo "/github"
 # ls -alh /github

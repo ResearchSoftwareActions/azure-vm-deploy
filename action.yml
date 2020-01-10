@@ -25,6 +25,8 @@ outputs:
 runs:
     using: 'docker'
     image: 'Dockerfile'
+    env:
+        home: /home/runner/
     args:
         - ${{ inputs.azure-credentials }}
         - ${{ inputs.azure-resource-group }}
